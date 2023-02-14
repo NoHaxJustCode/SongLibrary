@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.ListController;
 
-public class Main extends Application{
+public class SongLib extends Application{
     @Override
     public void start(Stage stage) throws Exception{
         FXMLLoader loader = new FXMLLoader();

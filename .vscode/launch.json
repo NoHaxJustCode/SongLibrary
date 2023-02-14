@@ -8,7 +8,7 @@
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
-            "mainClass": "main.Main",
+            "mainClass": "main.SongLib",
             "projectName": "SongLib_a575409d",
             "vmArgs": "--module-path /Users/avinashpaluri/Downloads/javafx-sdk-19.0.2.1/lib --add-modules javafx.controls,javafx.fxml",
 
