@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.ListView;
@@ -96,6 +97,7 @@ public class ListController {
             return;
         }
         int selectedIndex = listView.getSelectionModel().getSelectedIndex();
+        Song s = songs.get(selectedIndex);
         String title = songTitle.getText().trim();
         String artist = songArtist.getText().trim();
         String album = songAlbum.getText().trim();
@@ -108,6 +110,14 @@ public class ListController {
             String errorMsg = "Left Important Field Blank";
             alert.setContentText(errorMsg);
             alert.showAndWait();
+            songTitle.setText(s.getTitle());
+            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songArtist.setText(s.getArtist());
+            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songAlbum.setText(s.getAlbum());
+            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songYear.setText(Integer.toString(s.getYear()));
+            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
             return;
         }
         //search if there is a existing song
@@ -122,6 +132,14 @@ public class ListController {
                 String errorMsg = "Song Exists";
                 alert.setContentText(errorMsg);
                 alert.showAndWait();
+                songTitle.setText(s.getTitle());
+                songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
+                songArtist.setText(s.getArtist());
+                songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
+                songAlbum.setText(s.getAlbum());
+                songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
+                songYear.setText(Integer.toString(s.getYear()));
+                songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
                 return;        
             }
         }
@@ -133,7 +151,32 @@ public class ListController {
             String errorMsg = "Year Field Incorrect";
             alert.setContentText(errorMsg);
             alert.showAndWait();
+            songTitle.setText(s.getTitle());
+            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songArtist.setText(s.getArtist());
+            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songAlbum.setText(s.getAlbum());
+            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songYear.setText(Integer.toString(s.getYear()));
+            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
             return;            
+        }
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Changes");
+        alert.setContentText("Are You Sure You Want To Change Info?");
+        alert.setContentText("Are You Sure You Want To Change Info?");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.CANCEL)
+        {
+            songTitle.setText(s.getTitle());
+            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songArtist.setText(s.getArtist());
+            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songAlbum.setText(s.getAlbum());
+            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
+            songYear.setText(Integer.toString(s.getYear()));
+            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
+            return;
         }
         selectedSong.setAlbum(album);
         selectedSong.setArtist(artist);
