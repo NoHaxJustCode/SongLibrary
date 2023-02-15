@@ -89,6 +89,9 @@ public class ListController {
             System.out.println("Error reading file: " + e.getMessage());            
         }
     }
+    //When editing the song list, all you need to do is type directly into the textbox 
+    //and hit the edit button which will popup a confirmation alert which will either 
+    //save the changes or revert back to the original.
     @FXML
     private void handleEditButton(ActionEvent e) 
     {
