@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -43,17 +44,12 @@ public class ListController {
             listView.getSelectionModel().select(0);
             Song s = songs.get(0);
             songTitle.setText(s.getTitle());
-            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
             songArtist.setText(s.getArtist());
-            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
             songAlbum.setText(s.getAlbum());
-            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
-            if(s.getYear()==-1)
-                songYear.setText("");
+            if(s.getYear()!=-1)
+                songYear.setText(Integer.toString(s.getYear()));
             else
-                songYear.setText(Integer.toString(s.getYear()));                 
-            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
-        }
+                songYear.setText("");        }
     }
     private void loadSongs() {
         List<String> lines = new ArrayList<>();
@@ -110,16 +106,12 @@ public class ListController {
             alert.setContentText(errorMsg);
             alert.showAndWait();
             songTitle.setText(s.getTitle());
-            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
             songArtist.setText(s.getArtist());
-            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
             songAlbum.setText(s.getAlbum());
-            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
-            if(s.getYear()==-1)
-                songYear.setText("");
+            if(s.getYear()!=-1)
+                songYear.setText(Integer.toString(s.getYear()));
             else
-                songYear.setText(Integer.toString(s.getYear()));            
-            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
+                songYear.setText("");
             return;
         }
         //search if there is a existing song
@@ -135,16 +127,12 @@ public class ListController {
                 alert.setContentText(errorMsg);
                 alert.showAndWait();
                 songTitle.setText(s.getTitle());
-                songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
                 songArtist.setText(s.getArtist());
-                songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
                 songAlbum.setText(s.getAlbum());
-                songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
-                if(s.getYear()==-1)
-                    songYear.setText("");
+                if(s.getYear()!=-1)
+                    songYear.setText(Integer.toString(s.getYear()));
                 else
-                    songYear.setText(Integer.toString(s.getYear()));                 
-                songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
+                    songYear.setText("");
                 return;        
             }
         }
@@ -158,19 +146,16 @@ public class ListController {
                 alert.setContentText(errorMsg);
                 alert.showAndWait();
                 songTitle.setText(s.getTitle());
-                songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
                 songArtist.setText(s.getArtist());
-                songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
                 songAlbum.setText(s.getAlbum());
-                songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
-                if(s.getYear()==-1)
-                    songYear.setText("");
+                if(s.getYear()!=-1)
+                    songYear.setText(Integer.toString(s.getYear()));
                 else
-                    songYear.setText(Integer.toString(s.getYear()));                 
-                songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
+                    songYear.setText("");
                 return;            
             }
         }catch(NumberFormatException nfe){
+            //field is blank
             
         }
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -181,16 +166,12 @@ public class ListController {
         if(alert.getResult() == ButtonType.CANCEL)
         {
             songTitle.setText(s.getTitle());
-            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
             songArtist.setText(s.getArtist());
-            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
             songAlbum.setText(s.getAlbum());
-            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
-            if(s.getYear()==-1)
-                songYear.setText("");
+            if(s.getYear()!=-1)
+                songYear.setText(Integer.toString(s.getYear()));
             else
-                songYear.setText(Integer.toString(s.getYear()));                 
-            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
+                songYear.setText("");
             return;
         }
         selectedSong.setAlbum(album);
@@ -198,14 +179,14 @@ public class ListController {
         selectedSong.setTitle(title);
         try{
             selectedSong.setYear(Integer.parseInt(year));
-        }catch(NumberFormatException nfe){}
+            songYear.setText(year);
+        }catch(NumberFormatException nfe){
+            selectedSong.setYear(-1);
+            songYear.setText("");
+        }
         songTitle.setText(selectedSong.getTitle());
         songArtist.setText(selectedSong.getArtist());
         songAlbum.setText(selectedSong.getAlbum());
-        if(selectedSong.getYear()==-1)
-            songYear.setText("");
-        else
-            songYear.setText(Integer.toString(selectedSong.getYear()));
         listView.refresh();
         Collections.sort(songs);
         handleListViewSelection();
@@ -230,13 +211,12 @@ public class ListController {
         {
             Song s = listView.getSelectionModel().getSelectedItem();
             songTitle.setText(s.getTitle());
-            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
             songArtist.setText(s.getArtist());
-            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
             songAlbum.setText(s.getAlbum());
-            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
-            songYear.setText(Integer.toString(s.getYear()));
-            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
+            if(s.getYear()!=-1)
+                songYear.setText(Integer.toString(s.getYear()));
+            else
+                songYear.setText("");
         }
     }
     @FXML
@@ -246,13 +226,11 @@ public class ListController {
         Song s = listView.getSelectionModel().getSelectedItem();
         if (s != null) {
             songTitle.setText(s.getTitle());
-            songTitle.setFont(Font.font(null, FontWeight.BOLD, 12));
             songArtist.setText(s.getArtist());
-            songArtist.setFont(Font.font(null, FontWeight.BOLD, 12));
             songAlbum.setText(s.getAlbum());
-            songAlbum.setFont(Font.font(null, FontWeight.BOLD, 12));
-            songYear.setText(Integer.toString(s.getYear()));
-            songYear.setFont(Font.font(null, FontWeight.BOLD, 12));
-       }
+            if(s.getYear()!=-1)
+                songYear.setText(Integer.toString(s.getYear()));
+            else
+                songYear.setText("");       }
     }
 }

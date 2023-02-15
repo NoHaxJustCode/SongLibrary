@@ -1,5 +1,5 @@
-bet|nop|j|-1
 check|kop|lon|2534
+clap|nop||-1
 does this work?|lol|oof|14
 Pok|lol|oof|18
 Z for Last|lol|oof|15
