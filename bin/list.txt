@@ -1,4 +1,4 @@
-bet|nop|ok|1789
+bet|nop|j|-1
 check|kop|lon|2534
 does this work?|lol|oof|14
 Pok|lol|oof|18
